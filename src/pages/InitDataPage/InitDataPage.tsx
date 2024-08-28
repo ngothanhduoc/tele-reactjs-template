@@ -3,6 +3,7 @@ import { useInitData, useLaunchParams, type User } from '@telegram-apps/sdk-reac
 import { List, Placeholder } from '@telegram-apps/telegram-ui';
 
 import { DisplayData, type DisplayDataRow } from '@/components/DisplayData/DisplayData.tsx';
+import { useNavigate } from 'react-router-dom';
 
 function getUserRows(user: User): DisplayDataRow[] {
   return [
@@ -24,6 +25,7 @@ export const InitDataPage: FC = () => {
   const initData = useInitData();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const initDataRows = useMemo<DisplayDataRow[] | undefined>(() => {
     if (!initData || !initDataRaw) {
@@ -65,6 +67,10 @@ export const InitDataPage: FC = () => {
         }
         const result = await response.json();
         setData(result);
+        const goToAboutPage = () => {
+          navigate('/games');
+        };
+        setTimeout(goToAboutPage, 1000);
       } catch (err) {
         // setError(err.message);
       } finally {
