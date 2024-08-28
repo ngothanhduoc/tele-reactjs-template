@@ -1,4 +1,4 @@
-import { type FC, useMemo } from 'react';
+import { type FC, useMemo, useState } from 'react';
 import { useInitData, useLaunchParams, type User } from '@telegram-apps/sdk-react';
 import { List, Placeholder } from '@telegram-apps/telegram-ui';
 
@@ -22,6 +22,7 @@ function getUserRows(user: User): DisplayDataRow[] {
 export const InitDataPage: FC = () => {
   const initDataRaw = useLaunchParams().initDataRaw;
   const initData = useInitData();
+  const [loading, setLoading] = useState(true);
 
   const initDataRows = useMemo<DisplayDataRow[] | undefined>(() => {
     if (!initData || !initDataRaw) {
@@ -50,6 +51,28 @@ export const InitDataPage: FC = () => {
       { title: 'chat_instance', value: chatInstance },
     ];
   }, [initData, initDataRaw]);
+
+  useMemo(() => {
+    if (!initDataRaw) {
+      return;
+    }
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://tele-backend-api.amoti.info/auth/telegram?' + initDataRaw);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        alert(result);
+      } catch (err) {
+        // setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [initDataRaw]);
 
   const userRows = useMemo<DisplayDataRow[] | undefined>(() => {
     return initData && initData.user ? getUserRows(initData.user) : undefined;
@@ -88,6 +111,7 @@ export const InitDataPage: FC = () => {
       </Placeholder>
     );
   }
+  if (loading) return <p>Loading...</p>;
   return (
     <List>
       <DisplayData header={'Init Data'} rows={initDataRows}/>
