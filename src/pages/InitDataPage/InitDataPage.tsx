@@ -1,24 +1,24 @@
 import { type FC, useMemo, useState } from 'react';
-import { useInitData, useLaunchParams, type User } from '@telegram-apps/sdk-react';
+import { useInitData, useLaunchParams } from '@telegram-apps/sdk-react';
 import { List, Placeholder } from '@telegram-apps/telegram-ui';
 
 import { type DisplayDataRow } from '@/components/DisplayData/DisplayData.tsx';
 import { useNavigate } from 'react-router-dom';
 
-function getUserRows(user: User): DisplayDataRow[] {
-  return [
-    { title: 'id', value: user.id.toString() },
-    { title: 'username', value: user.username },
-    { title: 'photo_url', value: user.photoUrl },
-    { title: 'last_name', value: user.lastName },
-    { title: 'first_name', value: user.firstName },
-    { title: 'is_bot', value: user.isBot },
-    { title: 'is_premium', value: user.isPremium },
-    { title: 'language_code', value: user.languageCode },
-    { title: 'allows_to_write_to_pm', value: user.allowsWriteToPm },
-    { title: 'added_to_attachment_menu', value: user.addedToAttachmentMenu },
-  ];
-}
+// function getUserRows(user: User): DisplayDataRow[] {
+//   return [
+//     { title: 'id', value: user.id.toString() },
+//     { title: 'username', value: user.username },
+//     { title: 'photo_url', value: user.photoUrl },
+//     { title: 'last_name', value: user.lastName },
+//     { title: 'first_name', value: user.firstName },
+//     { title: 'is_bot', value: user.isBot },
+//     { title: 'is_premium', value: user.isPremium },
+//     { title: 'language_code', value: user.languageCode },
+//     { title: 'allows_to_write_to_pm', value: user.allowsWriteToPm },
+//     { title: 'added_to_attachment_menu', value: user.addedToAttachmentMenu },
+//   ];
+// }
 
 export const InitDataPage: FC = () => {
   const initDataRaw = useLaunchParams().initDataRaw;
@@ -78,28 +78,28 @@ export const InitDataPage: FC = () => {
     fetchData();
   }, [initDataRaw]);
 
-  const userRows = useMemo<DisplayDataRow[] | undefined>(() => {
-    return initData && initData.user ? getUserRows(initData.user) : undefined;
-  }, [initData]);
+  // const userRows = useMemo<DisplayDataRow[] | undefined>(() => {
+  //   return initData && initData.user ? getUserRows(initData.user) : undefined;
+  // }, [initData]);
 
-  const receiverRows = useMemo<DisplayDataRow[] | undefined>(() => {
-    return initData && initData.receiver ? getUserRows(initData.receiver) : undefined;
-  }, [initData]);
+  // const receiverRows = useMemo<DisplayDataRow[] | undefined>(() => {
+  //   return initData && initData.receiver ? getUserRows(initData.receiver) : undefined;
+  // }, [initData]);
 
-  const chatRows = useMemo<DisplayDataRow[] | undefined>(() => {
-    if (!initData?.chat) {
-      return;
-    }
-    const { id, title, type, username, photoUrl } = initData.chat;
+  // const chatRows = useMemo<DisplayDataRow[] | undefined>(() => {
+  //   if (!initData?.chat) {
+  //     return;
+  //   }
+  //   const { id, title, type, username, photoUrl } = initData.chat;
 
-    return [
-      { title: 'id', value: id.toString() },
-      { title: 'title', value: title },
-      { title: 'type', value: type },
-      { title: 'username', value: username },
-      { title: 'photo_url', value: photoUrl },
-    ];
-  }, [initData]);
+  //   return [
+  //     { title: 'id', value: id.toString() },
+  //     { title: 'title', value: title },
+  //     { title: 'type', value: type },
+  //     { title: 'username', value: username },
+  //     { title: 'photo_url', value: photoUrl },
+  //   ];
+  // }, [initData]);
 
   if (!initDataRows) {
     return (
