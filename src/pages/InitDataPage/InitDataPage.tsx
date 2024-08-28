@@ -22,6 +22,7 @@ function getUserRows(user: User): DisplayDataRow[] {
 export const InitDataPage: FC = () => {
   const initDataRaw = useLaunchParams().initDataRaw;
   const initData = useInitData();
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const initDataRows = useMemo<DisplayDataRow[] | undefined>(() => {
@@ -63,7 +64,7 @@ export const InitDataPage: FC = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
-        alert(result);
+        setData(result);
       } catch (err) {
         // setError(err.message);
       } finally {
@@ -118,6 +119,9 @@ export const InitDataPage: FC = () => {
       {userRows && <DisplayData header={'User'} rows={userRows}/>}
       {receiverRows && <DisplayData header={'Receiver'} rows={receiverRows}/>}
       {chatRows && <DisplayData header={'Chat'} rows={chatRows}/>}
+      {
+        !loading ? <p>{JSON.stringify(data, null, 2)}</p> : ''
+      }
     </List>
   );
 };
