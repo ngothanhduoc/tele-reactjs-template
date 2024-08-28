@@ -1,4 +1,4 @@
-import { type FC, useMemo, useState, useEffect } from 'react';
+import { type FC, useMemo, useState } from 'react';
 import { useInitData, useLaunchParams } from '@telegram-apps/sdk-react';
 import { List, Placeholder } from '@telegram-apps/telegram-ui';
 
@@ -116,15 +116,13 @@ export const InitDataPage: FC = () => {
     );
   }
   if (loading) return <p>Login to Backend API...</p>;
-  useEffect(() => {
-    if (data) {
-      const timeout = setTimeout(() => {
-        navigate('/games');
-      }, 1000);
+  if (data) {
+    const timeout = setTimeout(() => {
+      navigate('/games');
+    }, 1000);
 
-      return () => clearTimeout(timeout);
-    }
-  }, [data, navigate]);
+    return clearTimeout(timeout);
+  }
   return (
     <List>
       {
