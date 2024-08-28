@@ -71,7 +71,6 @@ export const InitDataPage: FC = () => {
         // setError(err.message);
       } finally {
         setLoading(false);
-        navigate('/games');
       }
     };
 
@@ -116,6 +115,7 @@ export const InitDataPage: FC = () => {
     );
   }
   if (loading) return <p>Login to Backend API...</p>;
+  if (data) navigate('/games'); 
   return (
     <List>
       <DisplayData header={'Init Data'} rows={initDataRows}/>
