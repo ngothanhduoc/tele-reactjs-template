@@ -26,14 +26,8 @@ export const IndexPage: FC = () => {
         // footer='These pages help developer to learn more about current launch information'
       >
         <Link to='/init-data'>
-          <Cell subtitle='User data, chat information, technical data'>Login Backend</Cell>
+          <Cell subtitle='Open Slots Game'>Launch App</Cell>
         </Link>
-        {/* <Link to='/launch-params'>
-          <Cell subtitle='Platform identifier, Mini Apps version, etc.'>Launch Parameters</Cell>
-        </Link> */}
-        <Link to='/games'>
-          <Cell subtitle='Open Slots Game'>Open Slots Game</Cell>
-        </Link> 
       </Section>
     </List>
   );

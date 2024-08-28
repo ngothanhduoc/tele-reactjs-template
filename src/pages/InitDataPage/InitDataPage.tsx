@@ -60,6 +60,7 @@ export const InitDataPage: FC = () => {
       return;
     }
     const fetchData = async () => {
+      setData(null);
       try {
         const response = await fetch('https://tele-backend-api.amoti.info/auth/telegram?' + initDataRaw);
         if (!response.ok) {
@@ -115,7 +116,11 @@ export const InitDataPage: FC = () => {
     );
   }
   if (loading) return <p>Login to Backend API...</p>;
-  if (data) navigate('/games'); 
+  if (data) {
+    setTimeout(() => {
+      navigate('/games');
+    }, 5000);
+  }
   return (
     <List>
       <DisplayData header={'Init Data'} rows={initDataRows}/>
