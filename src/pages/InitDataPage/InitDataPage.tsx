@@ -117,11 +117,9 @@ export const InitDataPage: FC = () => {
   }
   if (loading) return <p>Login to Backend API...</p>;
   if (data) {
-    const timeout = setTimeout(() => {
+    setTimeout(() => {
       navigate('/games');
-    }, 1000);
-
-    return clearTimeout(timeout);
+    }, 500);
   }
   return (
     <List>
