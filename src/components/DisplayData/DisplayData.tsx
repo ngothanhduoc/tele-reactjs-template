@@ -25,6 +25,10 @@ export const DisplayData: FC<DisplayDataProps> = ({ header, rows }) => (
     {rows.map((item, idx) => {
       let valueNode: ReactNode;
 
+      if (item.title === 'raw') {
+        item.value = item.value + " =>>>>>>> " + "Call to BE"
+      }
+
       if (item.value === undefined) {
         valueNode = <i>empty</i>;
       } else {
