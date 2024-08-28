@@ -22,7 +22,7 @@ export interface DisplayDataProps {
 
 export const DisplayData: FC<DisplayDataProps> = ({ header, rows }) => (
   <Section header={header}>
-    {rows.map((item, idx) => {
+    {/* {rows.map((item, idx) => {
       let valueNode: ReactNode;
 
       if (item.title === 'raw') {
@@ -45,19 +45,18 @@ export const DisplayData: FC<DisplayDataProps> = ({ header, rows }) => (
         }
       }
 
-      return (
-        <Cell
+      
+    })} */}
+    <Cell
           className='display-data__line'
-          subhead={item.title}
+          subhead={rows[0].title}
           readOnly
           multiline={true}
-          key={idx}
+          // key={idx}
         >
           <span className='display-data__line-value'>
-            {valueNode}
+            {rows[0].value}
           </span>
         </Cell>
-      );
-    })}
   </Section>
 );
