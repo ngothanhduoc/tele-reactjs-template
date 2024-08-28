@@ -31,8 +31,8 @@ export const IndexPage: FC = () => {
         {/* <Link to='/launch-params'>
           <Cell subtitle='Platform identifier, Mini Apps version, etc.'>Launch Parameters</Cell>
         </Link> */}
-        <Link to='https://imota-slots-demo.vercel.app/'>
-          <Cell subtitle='Open Slots Game'>Theme Parameters</Cell>
+        <Link to='/games'>
+          <Cell subtitle='Open Slots Game'>Open Slots Game</Cell>
         </Link> 
       </Section>
     </List>
