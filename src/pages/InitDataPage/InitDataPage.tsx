@@ -112,7 +112,7 @@ export const InitDataPage: FC = () => {
       </Placeholder>
     );
   }
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Login to Backend API...</p>;
   return (
     <List>
       <DisplayData header={'Init Data'} rows={initDataRows}/>
