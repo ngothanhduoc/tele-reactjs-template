@@ -117,18 +117,16 @@ export const InitDataPage: FC = () => {
   }
   if (loading) return <p>Login to Backend API...</p>;
   if (data) {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       navigate('/games');
-    }, 5000);
+    }, 1000);
+
+    clearTimeout(timeout);
   }
   return (
     <List>
-      <DisplayData header={'Init Data'} rows={initDataRows}/>
-      {userRows && <DisplayData header={'User'} rows={userRows}/>}
-      {receiverRows && <DisplayData header={'Receiver'} rows={receiverRows}/>}
-      {chatRows && <DisplayData header={'Chat'} rows={chatRows}/>}
       {
-        !loading ? <p>{JSON.stringify(data, null, 2)}</p> : ''
+        !loading ? <p>Login Done, Open App....</p> : ''
       }
     </List>
   );
