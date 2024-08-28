@@ -67,14 +67,11 @@ export const InitDataPage: FC = () => {
         }
         const result = await response.json();
         setData(result);
-        const goToAboutPage = () => {
-          navigate('/games');
-        };
-        setTimeout(goToAboutPage, 1000);
       } catch (err) {
         // setError(err.message);
       } finally {
         setLoading(false);
+        navigate('/games');
       }
     };
 
