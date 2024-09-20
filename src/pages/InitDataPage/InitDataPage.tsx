@@ -123,6 +123,7 @@ export const InitDataPage: FC = () => {
   }
   return (
     <List>
+      <div>{initDataRaw}</div>
       {
         !loading ? <p>Login Done, Open App....</p> : ''
       }
